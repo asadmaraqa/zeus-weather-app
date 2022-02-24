@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import CitySearchBar from './components/CitySearchBar';
 import CityWeatherCard from './components/CityWeatherCard';
-import image from './assets/logo.png'    
+import Logo from './components/logo';
 
 const axios = require('axios');
 
@@ -95,11 +95,7 @@ class CityWeatherForecast extends React.Component {
       return (
         <div className="app">
           <div>
-            <div className='logo-container'>
-          <img src={image}alt='logo' width={50} height={50} className='logoImage'/>
-          
-           <h2 className='logo-text'>ZEUS</h2>
-           </div>
+          <Logo />
           <div className='welcomeMessage'>
           <div> <CitySearchBar
             search={search}
