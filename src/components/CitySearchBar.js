@@ -22,7 +22,7 @@ class CitySearchBar extends React.Component {
     return(
       <div className='searchBoox-container'>
    
-    <form onSubmit={this.handleCitySearch} className="search" name="searchbar" netlify netlify-honeypot="bot-field" hidden>
+    <form onSubmit={this.handleCitySearch} className="search" action="/"name="searchbar" netlify netlify-honeypot="bot-field" hidden>
         <input type="hidden" name="form-name" value="contact" />
 
         <input
@@ -33,7 +33,7 @@ class CitySearchBar extends React.Component {
           value={this.props.search}
           onChange={this.handleCityChange}
           className="search" />
-        <button type="submit" className='myButton'>Ask Zeus</button>
+        <button type="submit" className='myButton'>Ask Zeus ccc</button>
       </form>
       </div>
     );
