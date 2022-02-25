@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button, Container, Row } from 'react-bootstrap';
-import "bootstrap/dist/css/bootstrap.min.css"
+
+
 class CitySearchBar extends React.Component {
   constructor(props) {
     super(props);
@@ -20,7 +20,7 @@ class CitySearchBar extends React.Component {
 
   render() {
     return(
-      <div>
+      <div className='searchBoox-container'>
       <form onSubmit={this.handleCitySearch} className="search">
         <input
           type="text"
@@ -29,7 +29,7 @@ class CitySearchBar extends React.Component {
           value={this.props.search}
           onChange={this.handleCityChange}
           className="search" />
-        <Button type="submit">Ask Zeus</Button>
+        <button type="submit" className='myButton'>Ask Zeus</button>
       </form>
       </div>
     );

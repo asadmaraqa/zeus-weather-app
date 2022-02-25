@@ -3,9 +3,9 @@ import './App.css';
 import CitySearchBar from './components/CitySearchBar';
 import CityWeatherCard from './components/CityWeatherCard';
 import Logo from './components/logo';
-
+import Footer from "./components/Footer"
+import API_KEY from "./apiKey"
 const axios = require('axios');
-
 class CityWeatherForecast extends React.Component {
   constructor(props) {
     super(props);
@@ -15,10 +15,11 @@ class CityWeatherForecast extends React.Component {
       error: null,
       locationKey: '',
       currentWeather: [],
+      weatherForecast:[],
       firstSearch: false,
       locationLoaded: false,
       currentLoaded: false,
-      forecastLoaded: false,
+      forecastLoaded:false
       
     };
 
@@ -29,7 +30,7 @@ class CityWeatherForecast extends React.Component {
   }
 
   getWeather() {
-    axios.get('http://dataservice.accuweather.com/locations/v1/cities/search?apikey=R8xO5ZrGwWjcdB8yuUqFzrlTrq8qbT81&q=' + escape(this.state.search)
+    axios.get('http://dataservice.accuweather.com/locations/v1/cities/search?apikey='  + API_KEY + '&q=' + escape(this.state.search)
       )
       .then(
         (response) => {
@@ -42,9 +43,10 @@ class CityWeatherForecast extends React.Component {
             firstSearch: true
           });
 
-        axios.get('http://dataservice.accuweather.com/currentconditions/v1/' + this.state.locationKey + '?apikey=R8xO5ZrGwWjcdB8yuUqFzrlTrq8qbT81'
+        axios.get('http://dataservice.accuweather.com/currentconditions/v1/' + this.state.locationKey + '?apikey=' + API_KEY
         )
         .then((response) => {
+          
           console.log(response.data[0]);
           this.setState({
             currentWeather: response.data[0],
@@ -56,11 +58,28 @@ class CityWeatherForecast extends React.Component {
             error: error
           });
         });
+        axios.get('http://dataservice.accuweather.com/forecasts/v1/daily/1day/' + this.state.locationKey+ '?apikey=' + API_KEY
+        )
+        .then((response) => {
+          console.log(response.data);
+          this.setState({
+            weatherForecast: response.data,
+            forecastLoaded: true
+          });
+        })
+        .catch((error) => {
+          this.setState({
+            error: error
+          });
+        });
 
       })
-
+      .catch((error) => {
+        this.setState({
+          error: error,
+        });
+      });
   }
-
   handleCitySearch(search) {
     this.setState({
       search: search
@@ -80,33 +99,24 @@ class CityWeatherForecast extends React.Component {
   }
 
   render() {
-    const { error, firstSearch, locationLoaded, currentLoaded, city, search  } = this.state;
-    if (error) {
-      return (
-        <div>
-          <CitySearchBar
-            search={search}
-            onCitySearchSubmit={this.handleCitySearchSubmit}
-            onCitySearch={this.handleCitySearch} />
-          <h3>Sorry, Zeus thinks there is an error!</h3>
-        </div>
-      )
-    } else if (!firstSearch) {
+    const { firstSearch, locationLoaded, currentLoaded,forecastLoaded, city, search  } = this.state;
+if (!firstSearch) {
       return (
         <div className="app">
-          <div>
+          <div className='searchBox-container' >
           <Logo />
-          <div className='welcomeMessage'>
-          <div> <CitySearchBar
-            search={search}
-            onCitySearchSubmit={this.handleCitySearchSubmit}
-            onCitySearch={this.handleCitySearch} /></div>
-            <div className='welcomeMessage2'><h3>Let Zeus work to find you the weather.</h3></div>
-            </div>
+          <div className='welcomeMessage' style={{height: "100%", position: "fixed"}}>
+            <div> 
+                <CitySearchBar
+                search={search}
+                onCitySearchSubmit={this.handleCitySearchSubmit}
+                onCitySearch={this.handleCitySearch} />
+                <h3>Let Zeus work to find you the weather.</h3></div>
+              </div>
             </div>
         </div>
       )
-    } else if (!locationLoaded || !currentLoaded) {
+    } else if (!locationLoaded || !currentLoaded||!forecastLoaded) {
       return (
         <div>
           <h3>Zeusing...</h3>
@@ -115,17 +125,24 @@ class CityWeatherForecast extends React.Component {
     } else {
         return (
         <div className="app">
-          <h1 className='logo-text'>ZEUS</h1>
+            <div className='searchBox-container'>
+          <Logo />
+          <div className='welcomeMessage'>
+            <div> 
           <CitySearchBar
             search={search}
             onCitySearchSubmit={this.handleCitySearchSubmit}
             onCitySearch={this.handleCitySearch} />
-
-          <CityWeatherCard
-            city={city}
-            weather={this.state.currentWeather} />
-         
-            
+         </div>
+        </div>
+          <div>
+            <CityWeatherCard
+              city={city}
+              weather={this.state.currentWeather} />
+            </div>
+            <Footer forecast={this.state.weatherForecast}/>
+        </div>
+        
         </div>
         )
     }

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Card } from 'react-bootstrap';
 
 
 class CityCurrentWeather extends React.Component {
@@ -13,11 +12,10 @@ class CityCurrentWeather extends React.Component {
     return(
       <div className="info-container">
         <div className='date'>{currentDate}</div>
-       <div className="top"> <p>{this.props.city}</p></div>
-       <div className='bold'> <p className='temp'>{temp} °C</p></div>
+       <div className="top"> <p>Right now in {this.props.city}</p></div>
+       <div className='bold'> <p className='temp'>{temp} °C </p></div>
         <h2 className="description">{weatherText}</h2>
-        <img src={"https://developer.accuweather.com/sites/default/files/" + icon + "-s.png"} alt="Current weather icon" 
-        className="icon"/>
+
       </div>
     )
   }
