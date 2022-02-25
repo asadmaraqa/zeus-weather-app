@@ -30,7 +30,7 @@ class CityWeatherForecast extends React.Component {
   }
 
   getWeather() {
-    axios.get('http://dataservice.accuweather.com/locations/v1/cities/search?apikey='  + API_KEY + '&q=' + escape(this.state.search)
+    axios.get('https://dataservice.accuweather.com/locations/v1/cities/search?apikey='  + API_KEY + '&q=' + escape(this.state.search)
       )
       .then(
         (response) => {
@@ -43,7 +43,7 @@ class CityWeatherForecast extends React.Component {
             firstSearch: true
           });
 
-        axios.get('http://dataservice.accuweather.com/currentconditions/v1/' + this.state.locationKey + '?apikey=' + API_KEY
+        axios.get('https://dataservice.accuweather.com/currentconditions/v1/' + this.state.locationKey + '?apikey=' + API_KEY
         )
         .then((response) => {
           
@@ -58,7 +58,7 @@ class CityWeatherForecast extends React.Component {
             error: error
           });
         });
-        axios.get('http://dataservice.accuweather.com/forecasts/v1/daily/1day/' + this.state.locationKey+ '?apikey=' + API_KEY
+        axios.get('https://dataservice.accuweather.com/forecasts/v1/daily/1day/' + this.state.locationKey+ '?apikey=' + API_KEY
         )
         .then((response) => {
           console.log(response.data);
