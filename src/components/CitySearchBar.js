@@ -21,7 +21,7 @@ class CitySearchBar extends React.Component {
   render() {
     return(
       <div className='searchBoox-container'>
-      <form onSubmit={this.handleCitySearch} className="search">
+      <form onSubmit={this.handleCitySearch} className="search" type="hidden" name="form-name" value="contact" >
         <input
           type="text"
           placeholder="Type name of a city here"
