@@ -21,7 +21,10 @@ class CitySearchBar extends React.Component {
   render() {
     return(
       <div className='searchBoox-container'>
-      <form onSubmit={this.handleCitySearch} className="search" name="searchbar" data-netlify="true">
+   
+    <form onSubmit={this.handleCitySearch} className="search" name="searchbar" netlify netlify-honeypot="bot-field" hidden>
+        <input type="hidden" name="form-name" value="contact" />
+
         <input
           type="text"
           name="search"
