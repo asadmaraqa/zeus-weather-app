@@ -8,16 +8,13 @@ class SearchBar extends React.Component {
     this.handleCitySearch = this.handleCitySearch.bind(this);
 
   }
-
   handleCityChange(e) {
     this.props.onCitySearch(e.target.value);
   }
-
   handleCitySearch(e) {
     e.preventDefault();
     this.props.onCitySearchSubmit(this.refs.description.value);
   }
-
   render() {
     return(
       <div className='searchBoox-container'>
@@ -28,7 +25,7 @@ class SearchBar extends React.Component {
         <input
           type="text"
           name="search"
-          placeholder="Type name of a city here"
+          placeholder="City name"
           ref="description"
           value={this.props.search}
           onChange={this.handleCityChange}
