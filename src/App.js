@@ -105,15 +105,15 @@ class CityWeatherForecast extends React.Component {
          <div className='searchBox-container' >
           <Logo />
          <div className='welcomeMessage' style={{height: "100%", position: "fixed"}}>
-            </div> <div> 
+            <div> 
           <SearchBar
             search={search}
             onUnitChange={this.handleUnitChange}
             onCitySearchSubmit={this.handleCitySearchSubmit}
             onCitySearch={this.handleCitySearch} />
-          <h3>Zeus thinks there is an error</h3>
-        </div>
-        </div>
+          <h3>Zeus thinks there is an error</h3></div> 
+          </div>
+         </div>
         </div>
       )
     } else if (!firstSearch) {
