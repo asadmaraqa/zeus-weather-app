@@ -13,6 +13,7 @@ class CityWeatherForecast extends React.Component {
       search: '',
       city: '',
       locationKey: '',
+      error: null,
       currentWeather: [],
       weatherForecast:[],
       firstSearch: false,
@@ -94,7 +95,7 @@ class CityWeatherForecast extends React.Component {
   }
 
   render() {
-    const { firstSearch, locationLoaded, currentLoaded,forecastLoaded, city, search } = this.state;
+    const {error, firstSearch, locationLoaded, currentLoaded,forecastLoaded, city, search } = this.state;
 if (!firstSearch) {
       return (
         <div className="app">
