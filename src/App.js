@@ -105,7 +105,7 @@ class CityWeatherForecast extends React.Component {
          <div className='searchBox-container' >
           <Logo />
          <div className='welcomeMessage' style={{height: "100%", position: "fixed"}}>
-            <div> 
+            </div> <div> 
           <SearchBar
             search={search}
             onUnitChange={this.handleUnitChange}
