@@ -93,10 +93,24 @@ class CityWeatherForecast extends React.Component {
     });
     this.getWeather();
   }
+  handleError() {
+    this.setState({error: null});
+  }
 
   render() {
     const {error, firstSearch, locationLoaded, currentLoaded,forecastLoaded, city, search } = this.state;
-if (!firstSearch) {
+        if (error) {
+      return (
+        <div className="main">
+          <CitySearchBar
+            search={search}
+            onUnitChange={this.handleUnitChange}
+            onCitySearchSubmit={this.handleCitySearchSubmit}
+            onCitySearch={this.handleCitySearch} />
+          <h3>Zeus thinks there is an error</h3>
+        </div>
+      )
+    } else if (!firstSearch) {
       return (
         <div className="app">
           <div className='searchBox-container' >
