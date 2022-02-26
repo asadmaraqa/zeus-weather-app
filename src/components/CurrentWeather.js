@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-class CityCurrentWeather extends React.Component {
+class CurrentWeather extends React.Component {
   render() {
     const weather = this.props.weather;
     const temp = weather.Temperature.Metric.Value;
@@ -20,4 +20,4 @@ class CityCurrentWeather extends React.Component {
   }
 }
 
-export default CityCurrentWeather;
+export default CurrentWeather;

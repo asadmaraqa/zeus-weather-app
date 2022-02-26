@@ -1,12 +1,12 @@
 import React from 'react';
-import CityCurrentWeather from './CityCurrentWeather';
+import CurrentWeather from './CurrentWeather';
 
 
-class CityWeatherCard extends React.Component {
+class WeatherCard extends React.Component {
   render() {
     return (
       <div>
-        <CityCurrentWeather
+        <CurrentWeather
           currentTemp={this.props.currentTemp}
           city={this.props.city}
           weather={this.props.weather} />
@@ -15,4 +15,4 @@ class CityWeatherCard extends React.Component {
   }
 }
 
-export default CityWeatherCard;
+export default WeatherCard;

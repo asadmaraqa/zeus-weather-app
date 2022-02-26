@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import CitySearchBar from './components/CitySearchBar';
-import CityWeatherCard from './components/CityWeatherCard';
+import SearchBar from './components/SearchBar';
+import WeatherCard from './components/WeatherCard';
 import Logo from './components/logo';
 import Bottom from "./components/Bottom"
 import API_KEY from "./apiKey"
@@ -34,10 +34,9 @@ class CityWeatherForecast extends React.Component {
       )
       .then(
         (response) => {
-          const state = response.data[0].AdministrativeArea.LocalizedType === "State" ? response.data[0].AdministrativeArea.ID + ' ' : '';
           const country = response.data[0].AdministrativeArea.CountryID;
           this.setState({
-            city: response.data[0].LocalizedName + ', ' + state + country,
+            city: response.data[0].LocalizedName + ', ' + country,
             locationKey: response.data[0].Key,
             locationLoaded: true,
             firstSearch: true
@@ -95,7 +94,7 @@ class CityWeatherForecast extends React.Component {
   }
 
   render() {
-    const { firstSearch, locationLoaded, currentLoaded,forecastLoaded, city, search  } = this.state;
+    const { firstSearch, locationLoaded, currentLoaded,forecastLoaded, city, search } = this.state;
 if (!firstSearch) {
       return (
         <div className="app">
@@ -103,7 +102,7 @@ if (!firstSearch) {
           <Logo />
           <div className='welcomeMessage' style={{height: "100%", position: "fixed"}}>
             <div> 
-                <CitySearchBar
+                <SearchBar
                 search={search}
                 onCitySearchSubmit={this.handleCitySearchSubmit}
                 onCitySearch={this.handleCitySearch}
@@ -126,7 +125,7 @@ if (!firstSearch) {
           <Logo />
           <div className='welcomeMessage'>
             <div> 
-          <CitySearchBar
+          <SearchBar
             search={search}
             onCitySearchSubmit={this.handleCitySearchSubmit}
             onCitySearch={this.handleCitySearch}
@@ -134,7 +133,7 @@ if (!firstSearch) {
          </div>
         </div>
           <div>
-            <CityWeatherCard
+            <WeatherCard
               city={city}
               weather={this.state.currentWeather} />
             </div>

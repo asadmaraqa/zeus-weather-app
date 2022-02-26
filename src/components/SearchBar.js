@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-class CitySearchBar extends React.Component {
+class SearchBar extends React.Component {
   constructor(props) {
     super(props);
     this.handleCityChange = this.handleCityChange.bind(this);
@@ -22,7 +22,7 @@ class CitySearchBar extends React.Component {
     return(
       <div className='searchBoox-container'>
    
-    <form onSubmit={this.handleCitySearch} className="search" action="/"name="searchbar" netlify netlify-honeypot="bot-field" hidden>
+    <form onSubmit={this.handleCitySearch} className="search" >
         <input type="hidden" name="form-name" value="contact" />
 
         <input
@@ -33,11 +33,11 @@ class CitySearchBar extends React.Component {
           value={this.props.search}
           onChange={this.handleCityChange}
           className="search" />
-        <button type="submit" className='myButton'>Ask Zeus ccc</button>
+        <button type="submit" className='myButton'>Ask Zeus</button>
       </form>
       </div>
     );
   }
 }
 
-export default CitySearchBar;
+export default SearchBar;
