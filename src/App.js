@@ -102,7 +102,7 @@ class CityWeatherForecast extends React.Component {
         if (error) {
       return (
         <div className="main">
-          <CitySearchBar
+          <SearchBar
             search={search}
             onUnitChange={this.handleUnitChange}
             onCitySearchSubmit={this.handleCitySearchSubmit}
