@@ -101,13 +101,19 @@ class CityWeatherForecast extends React.Component {
     const {error, firstSearch, locationLoaded, currentLoaded,forecastLoaded, city, search } = this.state;
         if (error) {
       return (
-        <div className="main">
+        <div className="app">
+         <div className='searchBox-container' >
+          <Logo />
+         <div className='welcomeMessage' style={{height: "100%", position: "fixed"}}>
+            <div> 
           <SearchBar
             search={search}
             onUnitChange={this.handleUnitChange}
             onCitySearchSubmit={this.handleCitySearchSubmit}
             onCitySearch={this.handleCitySearch} />
           <h3>Zeus thinks there is an error</h3>
+        </div>
+        </div>
         </div>
       )
     } else if (!firstSearch) {
